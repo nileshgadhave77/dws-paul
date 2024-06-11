@@ -31,10 +31,7 @@ public class FundTransferController {
     public ResponseEntity<FundTransferResponse> fundTransfer(@RequestBody final FundTransfer fundTransfer) throws AmountNotMatchException {
 
         log.info("Got fund transfer request from API {}", fundTransfer.toString());
-        if(fundTransfer.getAmount().compareTo(BigDecimal.ZERO)==-1)
-        {
-            throw new AmountNotMatchException(" Amount should be greater than 0 ");
-        }
+
         FundTransferResponse fundTransferResponse= fundTransferService.transferFund(fundTransfer);
         if(fundTransferResponse.getStatus().equals("success"))
         {
